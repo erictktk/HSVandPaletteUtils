@@ -2,6 +2,9 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import * as pau from 'eric-pixelarrayutils/BlendModes';.
 
+import * as HSVUtils from "/HSVUtils";
+
+
 import App from "./App";
 
 const rootElement = document.getElementById("root");

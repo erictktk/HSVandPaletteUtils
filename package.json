@@ -1,0 +1,25 @@
+{
+  "name": "eric-hsvutils",
+  "version": "0.1.0",
+  "description": "hsv, palette and color utils",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erictktk/HSVandPaletteUtils.git"
+  },
+  "keywords": [
+    "color",
+    "rgb",
+    "hsv",
+    "palettes"
+  ],
+  "author": "MEEEEEEEEE",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erictktk/HSVandPaletteUtils/issues"
+  },
+  "homepage": "https://github.com/erictktk/HSVandPaletteUtils#readme"
+}
