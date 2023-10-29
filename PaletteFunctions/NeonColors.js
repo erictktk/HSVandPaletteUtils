@@ -1,23 +1,27 @@
-import * as rw from 'eric-random-wrapper';
-import * as HSVUtils from '../HSVUtils';
-import * as ColorFunctions from '../ColorFunctions';
-import * as Pastelize from '../Pastelize';
-
+/**
+ * NeonStandards is an array of RGB color standards for neon colors.
+ * Each color is represented as an array of three integers: [R, G, B].
+ * Colors include yellow, red, green, purple, and pink.
+ *
+ * @type {Array<Array<number>>}
+ */
 export const NeonStandards = [
-    [255, 255, 0], //yellow
-    [255, 0, 0], //red
-    [85, 255, 0], //green
-    [255, 0, 255], //purple
-    [255, 0, 85], //pink
+    [255, 255, 0], // yellow
+    [255, 0, 0],   // red
+    [85, 255, 0],  // green
+    [255, 0, 255], // purple
+    [255, 0, 85],  // pink
 ];
 
-
 /**
- * 
- * @param {rw.RandomWrapper} rng 
+ * Generates a neon color palette using randomization.
+ *
+ * @param {rw.RandomWrapper} rng - Optional random number generator.
+ * @param {boolean} pastelizeSecond - Whether to pastelize the secondary colors.
+ * @returns {Array<number>} An array of neon colors represented as RGB values.
  */
-export function Neon(rng=null, pastelizeSecond=false){
-    if(!rng){
+export function Neon(rng = null, pastelizeSecond = false) {
+    if (!rng) {
         rng = new rw.RandomWrapper(Math.random());
     }
 
@@ -27,7 +31,7 @@ export function Neon(rng=null, pastelizeSecond=false){
     let pColor1 = HSVUtils.RGBHueRotate(choice, rotateDist);
     const p2Dist = rng.random(-10, 10);
     let pColor2 = HSVUtils.RGBHueRotate(pColor1, p2Dist);
-    pColor2 = HSVUtils.RGBBrighten(pColor2, -10);
+    pColor2 = HSVUtils.RGBModBrightness(pColor2, -10);
 
     const primaryColors = [pColor1, pColor2];
 
@@ -36,15 +40,21 @@ export function Neon(rng=null, pastelizeSecond=false){
 
     let secondaryColors = [sColor1, sColor2];
 
-    if (pastelizeSecond){
+    if (pastelizeSecond) {
         secondaryColors = Pastelize.Pastelize(secondaryColors, rng);
     }
 
     return [...primaryColors, ...secondaryColors];
 }
 
-export function GetOppositeNeon(color){
-    let oppositeColor = HSVUtils.RGBHueRotate(color, Math.random()*360);
-    oppositeColor = HSVUtils.RGBSetBrightness(oppositeColor, Math.random()*20 );
+/**
+ * Generates an opposite neon color based on the input color.
+ *
+ * @param {Array<number>} color - The input RGB color.
+ * @returns {Array<number>} An RGB value representing the opposite neon color.
+ */
+export function GetOppositeNeon(color) {
+    let oppositeColor = HSVUtils.RGBHueRotate(color, Math.random() * 360);
+    oppositeColor = HSVUtils.RGBSetBrightness(oppositeColor, Math.random() * 20);
     return oppositeColor;
 }
